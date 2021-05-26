@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.new
+    @message = Message.new
     @room = Room.find(params[:room_id])
-    @message = @room.message.includes(:user)
+    @messages = @room.messages.includes(:user)
   end
 
   def create
@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
     else
       @messages = @room.messages.includes(:user)
       render :index
+    end
   end
 
   private
